@@ -36,9 +36,10 @@ Column {data-width=650}
 leaflet::leaflet() %>%
   leaflet::addTiles() %>%
   leaflet::setView(-118.2437, 34.0522, zoom = 8) %>%
-  leaflet::addPolygons(data=watersheds, stroke = TRUE, weight = 0.25, smoothFactor = 0.5, fillOpacity = 0.35,
-              fillColor = ~pal(NAME), 
-              popup = ~paste("", NAME, "", ""))
+  leaflet::addPolygons(data=watersheds, stroke = TRUE, weight = 0.25, 
+                       smoothFactor = 0.5, fillOpacity = 0.35,
+                       fillColor = ~pal(NAME), 
+                       popup = ~paste("", NAME, "", ""))
 ```
 
 Column {data-width=350}
