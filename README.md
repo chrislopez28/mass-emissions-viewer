@@ -1,0 +1,2 @@
+# Mass Emissions Data Viewer
+Data Viewer for water quality monitoring data collected at various "Mass Emissions Stations" in Los Angeles County. This data gives an idea of the water quality during wet weather and dry weather conditions in Ballona Creek, Malibu Creek, Los Angeles River, Coyote Creek, San Gabriel River, Dominguez Channel, and Santa Clara River. Information on these stations can be found on the [Los Angeles County Department of Public Works website](https://dpw.lacounty.gov/LACFCD/SWQ/monitor.aspx).
