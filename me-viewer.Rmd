@@ -4,6 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
+runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -35,33 +36,38 @@ Column {data-width=650}
 ### Map
 
 ```{r}
-leaflet::leaflet() %>%
+leaflet::renderLeaflet({
+  leaflet::leaflet() %>%
   leaflet::addProviderTiles("Hydda.Full") %>%
   leaflet::setView(-118.2437, 34.0522, zoom = 9) %>%
   leaflet::addPolygons(data=watersheds, stroke = TRUE, weight = 0.25, 
                        smoothFactor = 0.5, fillOpacity = 0.35,
                        fillColor = ~pal(NAME), 
                        popup = ~paste("", NAME, "", ""))
+})
+
 ```
 
-Column {data-width=350}
+Inputs {.sidebar data-width=300}
 -----------------------------------------------------------------------
 
 ### Instructions
 
 Select a station from the map on the left to retrieve monitoring data. You can use the bottom selector to plot particular constituents from that station.
 
-### Select a Pollutant to Plot
-
 ```{r}
-
+selectInput("Pollutant", label = h4("Pollutant"), 
+    choices = list("-" = "-"),
+    selected = "-")
 ```
 
 
-### Chart C
+#### Plot
 
 ```{r}
-ggplot2::ggplot()
+shiny::renderPlot({
+  ggplot2::ggplot()
+})
 
 ```
 
