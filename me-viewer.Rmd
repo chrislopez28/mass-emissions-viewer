@@ -13,8 +13,10 @@ library(leaflet)
 library(dplyr)
 library(ggplot2)
 library(DT)
+library(geojsonio)
 
-# Load geojson of LA County watersheds
+# Load geojson of LA County watersheds.
+# Make sure full file path is included if not nested in your working directory.
 watersheds <- geojsonio::geojson_read("json/watersheds.json", what = "sp")
 
 # Create a color palette 'pal' for watersheds
