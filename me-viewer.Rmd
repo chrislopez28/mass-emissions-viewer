@@ -17,8 +17,8 @@ library(DT)
 # Load geojson of LA County watersheds
 watersheds <- geojsonio::geojson_read("json/watersheds.json", what = "sp")
 
-# Create a color palette 'pal' for factor
-pal <- colorFactor(palette = c("#1F77B4",  "#AEC7E8", "#FF7F0E", "#FFBB78", 
+# Create a color palette 'pal' for watersheds
+pal <- colorFactor(palette = c("#1F77B4", "#AEC7E8", "#FF7F0E", "#FFBB78", 
                                "#2CA02C", "#98DF8A", "#D62728", "#FF9896", 
                                "#9467BD", "#C5B0D5", "#8C564B", "#C49C94", 
                                "#E377C2", "#F7B6D2", "#7F7F7F", "#C7C7C7", 
@@ -34,8 +34,8 @@ Column {data-width=650}
 
 ```{r}
 leaflet::leaflet() %>%
-  leaflet::addTiles() %>%
-  leaflet::setView(-118.2437, 34.0522, zoom = 8) %>%
+  leaflet::addProviderTiles("Hydda.Full") %>%
+  leaflet::setView(-118.2437, 34.0522, zoom = 9) %>%
   leaflet::addPolygons(data=watersheds, stroke = TRUE, weight = 0.25, 
                        smoothFactor = 0.5, fillOpacity = 0.35,
                        fillColor = ~pal(NAME), 
