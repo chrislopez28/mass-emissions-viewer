@@ -28,6 +28,7 @@ pal <- colorFactor(palette = c("#1F77B4", "#AEC7E8", "#FF7F0E", "#FFBB78",
                                "#BCBD22", "#DBDB8D", "#17BECF", "#9EDAE5"), 
                    domain = NULL)
 
+stations <- read.csv("data/stations.csv")
 ```
 
 Column {.tabset data-width=650}
@@ -36,6 +37,8 @@ Column {.tabset data-width=650}
 ### Map
 
 ```{r}
+station_icon <- makeIcon("icons/blue-circle.png", iconWidth = 12, iconHeight = 12)
+
 leaflet::renderLeaflet({
   leaflet::leaflet() %>%
   leaflet::addProviderTiles("Hydda.Full") %>%
@@ -43,7 +46,13 @@ leaflet::renderLeaflet({
   leaflet::addPolygons(data=watersheds, stroke = TRUE, weight = 0.25, 
                        smoothFactor = 0.5, fillOpacity = 0.35,
                        fillColor = ~pal(NAME), 
-                       popup = ~paste("", NAME, "", ""))
+                       popup = ~paste("", NAME, "", "")) %>%
+  leaflet::addMarkers(data=stations, icon = station_icon,
+                      popup = ~paste("<b>Station Code</b>:", stations$StationCode, "<br>",
+                                     "<b>Alternate Station Names</b>: - <br>",
+                               "<b>Waterbody</b>:", stations$Waterbody, "<br>",
+                               "<b>Watershed</b>: ", stations$Watershed, "<br>",
+                               "<b>Description:</b>", stations$Description, "<br>"))
 })
 
 ```
