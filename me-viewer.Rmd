@@ -30,7 +30,7 @@ pal <- colorFactor(palette = c("#1F77B4", "#AEC7E8", "#FF7F0E", "#FFBB78",
 
 ```
 
-Column {data-width=650}
+Column {.tabset data-width=650}
 -----------------------------------------------------------------------
 
 ### Map
@@ -44,6 +44,15 @@ leaflet::renderLeaflet({
                        smoothFactor = 0.5, fillOpacity = 0.35,
                        fillColor = ~pal(NAME), 
                        popup = ~paste("", NAME, "", ""))
+})
+
+```
+
+### Monitoring Data
+
+```{r}
+DT::renderDataTable({
+  DT::datatable()
 })
 
 ```
